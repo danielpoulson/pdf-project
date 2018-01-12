@@ -1,0 +1,23 @@
+{
+  "name": "pdf-project",
+  "version": "1.0.0",
+  "description": "Sandbox for working with a pdf",
+  "main": "app.js",
+  "dependencies": {
+    "pdfkit": "^0.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielpoulson/pdf-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielpoulson/pdf-project/issues"
+  },
+  "homepage": "https://github.com/danielpoulson/pdf-project#readme"
+}
