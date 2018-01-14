@@ -2,18 +2,21 @@ let pdf = require("pdfkit");
 const fs = require("fs");
 const data = require("./data.js");
 const header = require("./header.js");
+const footer = require("./footer.js");
 const procedure = require("./procedure.js");
 const taskAct = data.steps;
 
 const fontReg = "./fonts/SourceSansPro-Regular.ttf";
 const fontBold = "./fonts/SourceSansPro-Bold.ttf";
 
-const commentSection = 560;
-
 exports.runReport = (tasks, taskSteps) => {
   try {
     // Create a document
-    doc = new pdf({ autoFirstPage: false });
+    doc = new pdf({
+      autoFirstPage: false,
+      size: [595, 842],
+      margin: 5
+    });
 
     // Pipe its output somewhere, like to a file or HTTP response
     doc.pipe(fs.createWriteStream("output.pdf"));
@@ -22,7 +25,7 @@ exports.runReport = (tasks, taskSteps) => {
       doc
         .fontSize(14)
         .font(fontBold)
-        .text("Delta Laboratories", 0, 20, { align: "center" });
+        .text("Delta Laboratories", 0, 0, { align: "center" });
       doc.text("Preventative Maintenance Task", { align: "center" });
     });
 
@@ -31,23 +34,7 @@ exports.runReport = (tasks, taskSteps) => {
       const steps = taskSteps.filter(step => step.TaskNo === task.TaskNo);
 
       procedure.procedureBody(doc, steps, task);
-
-      doc
-        .moveDown()
-        .font(fontBold)
-        .fontSize(14)
-        .text("Comments", 40, commentSection);
-
-      doc.rect(40, commentSection + 30, 520, 120).stroke();
-
-      doc
-        .font(fontReg)
-        .fontSize(12)
-        .text(
-          "Maintenance Work Conducted by (Sign)____________________ (Date)______________",
-          100,
-          commentSection + 130
-        );
+      footer.footerSection(doc, fontBold, fontReg);
     });
 
     //   Finalize PDF file

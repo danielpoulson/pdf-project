@@ -8,6 +8,7 @@ const connection = ADODB.open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\
 
 async function query() {
   try {
+    // const tasks = await connection.query("SELECT TaskNo, TaskDesp, IQNo, IQDescription, Owner FROM tblMaintSched WHERE TaskNo = 'MTDL-166'");
     const tasks = await connection.query("SELECT TaskNo, TaskDesp, IQNo, IQDescription, Owner FROM tblMaintSched WHERE Stage > 0");
     const taskSteps = await connection.query("SELECT * FROM tblMaintTask");
     return rpt.runReport(tasks, taskSteps);
