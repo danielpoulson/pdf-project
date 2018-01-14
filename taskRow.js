@@ -1,10 +1,11 @@
-exports.row = (doc, fontReg, fontSize, stepHeight, rec, rowHeight) => {
-  return doc
+exports.row = (doc, fontReg, fontSize, stepHeight, step, rowHeight) => {
+  doc
     .font(fontReg)
     .fontSize(fontSize)
-    .text(rec.num, 50, stepHeight)
-    .text(rec.step, 70, stepHeight, { width: 350 })
-    .text(rec.result, 420, rowHeight - 20);
+    .lineGap(0.5)
+    .text(step.StepNo, 50, stepHeight)
+    .text(step.Description, 70, stepHeight, { width: 350 })
+    .text(step.Result, 420, rowHeight - 20);
 };
 
-exports.rowLines = step => step.length / 60;
+exports.rowLines = step => step.length / 70;
