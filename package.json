@@ -4,8 +4,6 @@
   "description": "Sandbox for working with a pdf",
   "main": "app.js",
   "dependencies": {
-    "node-adodb": "^4.0.6",
-    "pdfkit": "^0.8.3"
   },
   "devDependencies": {},
   "scripts": {
